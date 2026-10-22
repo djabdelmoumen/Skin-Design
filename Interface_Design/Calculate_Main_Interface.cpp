@@ -1,46 +1,64 @@
 #include "Interfaces.hpp"
-
 void Calculate_Main_Interface(void)
 {
+	int x, y, Largeur, Hauteur;
+
 	RECT fullRect = {0, 0, HD1366, HD768};
 	FillMyRectangle(Control_Surface.getHDC(), fullRect, Gris);
 	
 	// --- 1 Retreiving Main (Control) Window Width & Height:
-	RECT rect;
-	GetClientRect(hwnd_CONTROL, &rect);
-	int CLIENT_WIDTH_CONTROL  = rect.right  - rect.left;
-	int CLIENT_HEIGHT_CONTROL = rect.bottom - rect.top;
-	
-	// --- Calcule Barre de Menu:
-	
+	RECT Rect;
+	GetClientRect(hwnd_CONTROL, &Rect); 
+	int CLIENT_WIDTH_CONTROL  = Rect.right  - Rect.left; 
+	int CLIENT_HEIGHT_CONTROL = Rect.bottom - Rect.top;
 
+	// --- 1 Calcule Barre de Menu:
+	BOUTTON[ID_TEAMS_EDIT_PAGE].getDimensions(Largeur, Hauteur);
+	
+	INTERFACE_RECTANGLE[MENU_BAR].left   = MARGIN;
+	INTERFACE_RECTANGLE[MENU_BAR].top    = MARGIN;
+	INTERFACE_RECTANGLE[MENU_BAR].right  = CLIENT_WIDTH_CONTROL - MARGIN;
+	INTERFACE_RECTANGLE[MENU_BAR].bottom = INTERFACE_RECTANGLE[MENU_BAR].top + Hauteur;
+	
+	BOUTTON[ID_TEAMS_EDIT_PAGE].Move(INTERFACE_RECTANGLE[MENU_BAR].left, INTERFACE_RECTANGLE[MENU_BAR].top);
+	
+	
+	//FillMyRectangle(Control_Surface.getHDC(), INTERFACE_RECTANGLE[MENU_BAR], Canard);
+	
+	
 	// --- 2 Calcule de la zone info:
 	INTERFACE_RECTANGLE[INFO_ZONE].left   = MARGIN;
-	INTERFACE_RECTANGLE[INFO_ZONE].top    = MARGIN;
+	INTERFACE_RECTANGLE[INFO_ZONE].top    = INTERFACE_RECTANGLE[MENU_BAR].bottom + MARGIN;
 	INTERFACE_RECTANGLE[INFO_ZONE].right  = CLIENT_WIDTH_CONTROL - MARGIN;
-	INTERFACE_RECTANGLE[INFO_ZONE].bottom = 150;
+	INTERFACE_RECTANGLE[INFO_ZONE].bottom = INTERFACE_RECTANGLE[INFO_ZONE].top + 100;
 
 	// --- 3 Calculer ies rectangles(zones) de preview et program:
-	int Largeur = (int)(((float)((INTERFACE_RECTANGLE[INFO_ZONE].right - INTERFACE_RECTANGLE[INFO_ZONE].left) - Button_Transition_Dimension))/2.0);
-	int Hauteur  = (int)((9.0/16.0)*((float)Largeur));
+	Largeur = (int)(((float)((INTERFACE_RECTANGLE[INFO_ZONE].right - INTERFACE_RECTANGLE[INFO_ZONE].left) - Button_Transition_Dimension))/2.0);
+	Hauteur = (int)((9.0f/16.0f)*((float)Largeur));
 
 	// --- 4 Two Screens(Preview & Program) Zone:
 	INTERFACE_RECTANGLE[TWO_SCREENS].left   = MARGIN;
 	INTERFACE_RECTANGLE[TWO_SCREENS].top    = MARGIN + INTERFACE_RECTANGLE[INFO_ZONE].bottom;
 	INTERFACE_RECTANGLE[TWO_SCREENS].right  = CLIENT_WIDTH_CONTROL - MARGIN;
-	INTERFACE_RECTANGLE[TWO_SCREENS].bottom = MARGIN + INTERFACE_RECTANGLE[INFO_ZONE].bottom  + Hauteur;	
-	
+	INTERFACE_RECTANGLE[TWO_SCREENS].bottom = INTERFACE_RECTANGLE[TWO_SCREENS].top + Hauteur;
+
+	//FillMyRectangle(Control_Surface.getHDC(), INTERFACE_RECTANGLE[TWO_SCREENS], Jaune);
+
 	// --- 5 Ecran Preview:
-	INTERFACE_RECTANGLE[PREVIEW_SCREEN].left   = MARGIN;
-	INTERFACE_RECTANGLE[PREVIEW_SCREEN].top    = MARGIN + INTERFACE_RECTANGLE[INFO_ZONE].bottom;
-	INTERFACE_RECTANGLE[PREVIEW_SCREEN].right  = MARGIN + Largeur;
-	INTERFACE_RECTANGLE[PREVIEW_SCREEN].bottom = INTERFACE_RECTANGLE[PREVIEW_SCREEN].top + Hauteur;
+	INTERFACE_RECTANGLE[PREVIEW_SCREEN].left   = INTERFACE_RECTANGLE[TWO_SCREENS].left;
+	INTERFACE_RECTANGLE[PREVIEW_SCREEN].top    = INTERFACE_RECTANGLE[TWO_SCREENS].top;
+	INTERFACE_RECTANGLE[PREVIEW_SCREEN].right  = INTERFACE_RECTANGLE[TWO_SCREENS].left + Largeur;
+	INTERFACE_RECTANGLE[PREVIEW_SCREEN].bottom = INTERFACE_RECTANGLE[TWO_SCREENS].bottom;
+
+	//FillMyRectangle(Control_Surface.getHDC(), INTERFACE_RECTANGLE[PREVIEW_SCREEN], Vert);
 
 	// --- 6 Ecran Program:
-	INTERFACE_RECTANGLE[PROGRAM_SCREEN].left   = CLIENT_WIDTH_CONTROL - MARGIN - Largeur;
-	INTERFACE_RECTANGLE[PROGRAM_SCREEN].top    = INTERFACE_RECTANGLE[PREVIEW_SCREEN].top;
-	INTERFACE_RECTANGLE[PROGRAM_SCREEN].right  = INTERFACE_RECTANGLE[PROGRAM_SCREEN].left + Largeur;
-	INTERFACE_RECTANGLE[PROGRAM_SCREEN].bottom = INTERFACE_RECTANGLE[PROGRAM_SCREEN].top  + Hauteur;
+	INTERFACE_RECTANGLE[PROGRAM_SCREEN].left   = INTERFACE_RECTANGLE[TWO_SCREENS].right - Largeur;
+	INTERFACE_RECTANGLE[PROGRAM_SCREEN].top    = INTERFACE_RECTANGLE[TWO_SCREENS].top;
+	INTERFACE_RECTANGLE[PROGRAM_SCREEN].right  = INTERFACE_RECTANGLE[TWO_SCREENS].right;
+	INTERFACE_RECTANGLE[PROGRAM_SCREEN].bottom = INTERFACE_RECTANGLE[TWO_SCREENS].bottom;
+
+	//FillMyRectangle(Control_Surface.getHDC(), INTERFACE_RECTANGLE[PROGRAM_SCREEN], Rouge);
 	
 	// --- 7 Down Section:
 	INTERFACE_RECTANGLE[DOWN_SECTION].left   = MARGIN;
@@ -52,8 +70,13 @@ void Calculate_Main_Interface(void)
 	
 	// Bouton Transition:
 	BOUTTON[ID_BTN_TRANSITION].getDimensions(Largeur, Hauteur);
-	int x = INTERFACE_RECTANGLE[PREVIEW_SCREEN].right;
-	int y = (int)(((float)(INTERFACE_RECTANGLE[PROGRAM_SCREEN].top + INTERFACE_RECTANGLE[PROGRAM_SCREEN].bottom - Largeur))/2.0);
+	x = INTERFACE_RECTANGLE[PREVIEW_SCREEN].right;
+	y = (INTERFACE_RECTANGLE[TWO_SCREENS].top + INTERFACE_RECTANGLE[TWO_SCREENS].bottom - Hauteur)/2.0;
+	
+
+	
+	//y = (int)(((float)(INTERFACE_RECTANGLE[PROGRAM_SCREEN].top + INTERFACE_RECTANGLE[PROGRAM_SCREEN].bottom - Largeur))/2.0);
+
 	BOUTTON[ID_BTN_TRANSITION].Move(x, y);
 
 	// bouton de la page chrono:
@@ -68,7 +91,7 @@ void Calculate_Main_Interface(void)
 	
 	// Bouton de la Page Big Score:
 	x = x + Largeur + MARGIN;
-	BOUTTON[ID_TEAMS_EDIT_PAGE].Move(x, y);
+	//BOUTTON[ID_TEAMS_EDIT_PAGE].Move(x, y);
 	
 								
 	// --- La page Chrono: --- //

@@ -23,7 +23,7 @@ void Buttons_Creation()
 	BOUTTON[ID_BTN_MIN_GOAL_VISITORS].init	(ID_BTN_MIN_GOAL_VISITORS,TEXT("-"),	hwnd_CONTROL, 0, 0, 30, 30, FALSE);
 	// Page d'édition des équipes:
 	BOUTTON[ID_TEAMS_EDIT_PAGE].init		(ID_TEAMS_EDIT_PAGE,	TEXT("Teams List"),hwnd_CONTROL, 0, 0, 100, 30, TRUE);
-	BOUTTON[ID_BTN_RETURN].init				(ID_BTN_RETURN,			TEXT("Return"),hwnd_CONTROL, 0, 0, 100, 30, TRUE);
+	BOUTTON[ID_BTN_HOME].init				(ID_BTN_HOME,			TEXT("Return"),hwnd_CONTROL, 0, 0, 100, 30, TRUE);
 	BOUTTON[ID_BTN_NEW_TEAM].init			(ID_BTN_NEW_TEAM,		TEXT("New Team"),hwnd_CONTROL, 0, 0, 100, 30, TRUE);
 	BOUTTON[ID_BTN_LISTE_TEAMS].init		(ID_BTN_LISTE_TEAMS,	TEXT("Teams Edition"),hwnd_CONTROL, 0, 0, 100, 30, TRUE);
 	BOUTTON[ID_BTN_SAVE_TEAM].init			(ID_BTN_SAVE_TEAM,		TEXT("Save Team"),hwnd_CONTROL, 0, 0, 100, 30, FALSE);

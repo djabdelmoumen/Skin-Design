@@ -207,8 +207,8 @@ LRESULT CALLBACK ControlProcedure(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lP
 				case ID_TEAMS_EDIT_PAGE:
 				{
 					RECT fullRect = {0, 0, HD1366, HD768};
-					FillMyRectangle(Control_Surface.getHDC(), fullRect, Gris);
-					FillMyRectangle(Control_Surface.getHDC(), INTERFACE_RECTANGLE[TEAMS_SECTION], DarkBlue);
+					//FillMyRectangle(Control_Surface.getHDC(), fullRect, Gris);
+					//FillMyRectangle(Control_Surface.getHDC(), INTERFACE_RECTANGLE[TEAMS_SECTION], DarkBlue);
 
 					// Calculate_Interface(TEAMS_INTERFACE);
 					
@@ -219,10 +219,10 @@ LRESULT CALLBACK ControlProcedure(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lP
 				}
                 return 0;
 				
-				case ID_BTN_RETURN:
+				case ID_BTN_HOME:
 				{
 						RECT fullRect = {0, 0, HD1366, HD768};
-						FillMyRectangle(Control_Surface.getHDC(), fullRect, Noir);					
+						//FillMyRectangle(Control_Surface.getHDC(), fullRect, Noir);					
 					
 						Calculate_Interface(MAIN_INTERFACE);					
 						Draw_Info_Zone();
@@ -281,8 +281,8 @@ LRESULT CALLBACK ControlProcedure(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lP
 				case TEAMS_INTERFACE:
 				{
 					RECT fullRect = {0, 0, HD1366, HD768};
-					FillMyRectangle(Control_Surface.getHDC(), fullRect, Gris);
-					FillMyRectangle(Control_Surface.getHDC(), INTERFACE_RECTANGLE[TEAMS_SECTION], DarkBlue);
+					//FillMyRectangle(Control_Surface.getHDC(), fullRect, Gris);
+					//FillMyRectangle(Control_Surface.getHDC(), INTERFACE_RECTANGLE[TEAMS_SECTION], DarkBlue);
 					Calculate_Interface(TEAMS_INTERFACE);
 				}
 				break;
@@ -296,15 +296,24 @@ LRESULT CALLBACK ControlProcedure(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lP
 
 		case WM_PAINT:
 		{
-			PAINTSTRUCT ps;
-			HDC hdc = BeginPaint(hwnd, &ps);
-			// Copie finale vers l'écran (Double buffering via Control_Surface)
-			RECT rect;
-			GetClientRect(hwnd, &rect);
-			BitBlt(hdc, 0, 0, rect.right, rect.bottom, Control_Surface.getHDC(), 0, 0, SRCCOPY);
-			EndPaint(hwnd, &ps);
+			//static ULONGLONG last_time = GetTickCount();
+			//ULONGLONG now_time = GetTickCount();
+			//ULONGLONG delta = (now_time - last_time);
+			//if(delta < 100) Sleep(100 - delta);
+			 //Sleep(1);
+			//last_time = now_time;
+				PAINTSTRUCT ps;
+				HDC hdc = BeginPaint(hwnd, &ps);
+				RECT rect;
+				GetClientRect(hwnd, &rect);
+				// Copie finale vers l'écran (Double buffering via Control_Surface)
+				BitBlt(hdc, 0, 0, rect.right, rect.bottom, Control_Surface.getHDC(), 0, 0, SRCCOPY);
+				EndPaint(hwnd, &ps);
 		}
 		return 0;
+		
+		case WM_ERASEBKGND:
+		return 1;
 		
 		case WM_DESTROY:
 		{

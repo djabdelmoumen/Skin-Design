@@ -46,7 +46,7 @@ void Show_Interface(int interface_id, bool Visibility)
 			break;
 			case TEAMS_INTERFACE:
 				//if(Visibility) FillmyRectangle(Control_Surface.getHDC(), {0, 0, HD1366, HD768}, Noir);
-				Execute_Show_Interface(ID_BTN_RETURN, ID_BTN_SAVE_TEAM, Visibility);
+				Execute_Show_Interface(ID_BTN_HOME, ID_BTN_SAVE_TEAM, Visibility);
 			break;
 	}
 	return;

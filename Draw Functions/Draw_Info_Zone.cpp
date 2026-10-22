@@ -29,5 +29,5 @@ void Draw_Info_Zone()
 	else
 	app::TextToHDC(Control_Surface.getHDC(), x, y+=20, FontStandard20, Blanc, L"Pas d'erreures jusqu'a a ce moment!" );
 	
-	app::TextToHDC(Control_Surface.getHDC(), x, y+=20, FontStandard20, Blanc, L"[Show_Preview_Little_Score]:%d", Show_Preview_Little_Score );
+	//app::TextToHDC(Control_Surface.getHDC(), x, y+=20, FontStandard20, Blanc, L"[Show_Preview_Little_Score]:%d", Show_Preview_Little_Score );
 }

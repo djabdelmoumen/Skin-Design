@@ -38,11 +38,13 @@
 	
 	// Couleurs GDI:
 	#define Blanc		RGB(255, 255, 255)
+	#define Noir		RGB(  0,   0,   0)
+	#define Gris		RGB( 50,  50,  50)
 	#define Rouge		RGB(255,   0,   0)
 	#define Vert		RGB(  0, 255,   0)
 	#define Bleu		RGB(  0,   0, 255)
-	#define Noir		RGB(  0,   0,   0)
-    #define Gris		RGB( 50,  50,  50)
+	#define Jaune		RGB(255, 255,   0)
+    
     #define DarkBlue	RGB( 5,   28,  36)
 	#define Canard		RGB( 74, 145, 158)
 	#define RougeBrique	RGB(156,  43,  27)
@@ -67,7 +69,7 @@
 	#define ID_BTN_MIN_GOAL_VISITORS 14
 	#define ID_TEAMS_EDIT_PAGE       15
 			// Teams Interface
-	#define ID_BTN_RETURN            16
+	#define ID_BTN_HOME				 16
 	#define ID_BTN_NEW_TEAM			 17
 	#define ID_BTN_LISTE_TEAMS		 18
 	#define ID_BTN_SAVE_TEAM		 19
@@ -83,14 +85,14 @@
 	#define TEAMS_INTERFACE 2
 
 	// Main Interface Resctangles:
-	#define MENU_BAR		6
-	#define INFO_ZONE       0
-	#define PREVIEW_SCREEN  1
-	#define PROGRAM_SCREEN  2
-	#define TWO_SCREENS	    3
-	#define DOWN_SECTION    4
+	#define MENU_BAR		0
+	#define INFO_ZONE       1
+	#define PREVIEW_SCREEN  2
+	#define PROGRAM_SCREEN  3
+	#define TWO_SCREENS	    4
+	#define DOWN_SECTION    5
 	// Teams Interface Resctangles:
-	#define TEAMS_SECTION	5
+	#define TEAMS_SECTION	6
 	
 	#define NUMBER_OF_RECTANGLES 7
 
